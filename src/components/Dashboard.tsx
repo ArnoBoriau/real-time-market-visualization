@@ -1,30 +1,13 @@
 import { For } from "solid-js";
 import StockCard from "./StockCard";
-import { createStockSignals } from "../services/stockSetup";
+import { useStocks } from "../context/StockContext";
 import "./Dashboard.css";
 
 export default function Dashboard() {
-  const stockSignals = createStockSignals();
+  const { stockSignals, updateAllStocks } = useStocks();
 
-  // update stocks
   const handleRefresh = () => {
-    stockSignals.forEach(([stock, setStock]) => {
-      const current = stock();
-
-      const priceChange = (Math.random() - 0.5) * 10;
-      const newPrice = Math.max(1, current.price + priceChange);
-      const change = newPrice - current.price;
-      const changePercent = (change / current.price) * 100;
-
-      setStock({
-        ...current,
-        price: newPrice,
-        change,
-        changePercent,
-        volume: current.volume + Math.floor(Math.random() * 10000),
-        lastUpdate: Date.now(),
-      });
-    });
+    updateAllStocks();
   };
 
   return (
