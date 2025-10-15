@@ -1,12 +1,11 @@
-import { For } from "solid-js";
-import StockCard from "./StockCard";
-import RefreshControl from "./RefreshControl";
-import { useStocks } from "../context/StockContext";
 import "./Dashboard.css";
 
-export default function Dashboard() {
-  const { stockSignals } = useStocks();
+import RefreshControl from "./RefreshControl";
+import WatchlistPanel from "./WatchlistPanel";
+import TrendingPanel from "./TrendingPanel";
+import StocklistPanel from "./StocklistPanel";
 
+export default function Dashboard() {
   return (
     <div class="dashboard">
       <div class="dashboard-header">
@@ -15,12 +14,13 @@ export default function Dashboard() {
       </div>
 
       <div class="dashboard-grid">
-        <div class="panel stocks-panel">
-          <h2>Stock & Crypto Tracker</h2>
-          <div class="stocks-grid">
-            <For each={stockSignals}>
-              {([stock]) => <StockCard stock={stock()} />}
-            </For>
+        <TrendingPanel />
+        <div class="dashboard-panels">
+          <div class="main-panel">
+            <StocklistPanel />
+          </div>
+          <div class="side-panel">
+            <WatchlistPanel />
           </div>
         </div>
       </div>

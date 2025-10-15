@@ -4,6 +4,7 @@ import {
   ParentComponent,
   Accessor,
   createEffect,
+  createMemo,
   onCleanup,
   onMount,
 } from "solid-js";
@@ -20,6 +21,8 @@ interface StockContextValue {
   watchlist: Accessor<string[]>;
   toggleWatchlist: (symbol: string) => void;
   isWatched: (symbol: string) => boolean;
+  allStocks: Accessor<StockData[]>;
+  watchedStocks: Accessor<StockData[]>;
   refreshInterval: Accessor<number>;
   setRefreshInterval: (n: number) => void;
 }
@@ -137,6 +140,12 @@ export const StockProvider: ParentComponent = (props) => {
     watchlist,
     toggleWatchlist,
     isWatched,
+    allStocks: createMemo(() => stockSignals.map(([s]) => s())),
+    watchedStocks: createMemo(() =>
+      watchlist()
+        .map((sym) => stockSignals.map(([s]) => s()).find((st) => st.symbol === sym))
+        .filter(Boolean) as StockData[]
+    ),
     refreshInterval,
     setRefreshInterval,
   };

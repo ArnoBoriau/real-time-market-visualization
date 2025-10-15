@@ -87,6 +87,21 @@
   margin-bottom: 2rem;
 }
 
+.dashboard-panels {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  margin-top: 1rem;
+}
+
+.main-panel {
+  width: 60%;
+}
+
+.side-panel {
+  width: 40%;
+}
+
 .panel {
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(10px);
