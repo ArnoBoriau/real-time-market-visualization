@@ -1,24 +1,8 @@
-import { createSignal, createEffect, onCleanup } from "solid-js";
 import { useStocks } from "../context/StockContext";
 import "./RefreshControl.css";
 
 export default function RefreshControl() {
-  const { updateAllStocks } = useStocks();
-  const [refreshInterval, setRefreshInterval] = createSignal<number>(0); // Default: off
-
-  createEffect(() => {
-    const interval = refreshInterval();
-
-    if (interval === 0) {
-      return;
-    }
-
-    const timer = setInterval(() => {
-      updateAllStocks();
-    }, interval);
-
-    onCleanup(() => clearInterval(timer));
-  });
+  const { refreshInterval, setRefreshInterval } = useStocks();
 
   const handleIntervalChange = (e: Event) => {
     const target = e.target as HTMLSelectElement;

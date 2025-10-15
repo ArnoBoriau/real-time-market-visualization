@@ -1,4 +1,11 @@
-import { createContext, useContext, ParentComponent, Accessor } from "solid-js";
+import {
+  createContext,
+  useContext,
+  ParentComponent,
+  Accessor,
+  createEffect,
+  onCleanup,
+} from "solid-js";
 import { createSignal, Signal } from "solid-js";
 import { generateInitialStocks } from "../services/stockSetup";
 import type { StockData } from "../types/stock";
@@ -12,6 +19,8 @@ interface StockContextValue {
   watchlist: Accessor<string[]>;
   toggleWatchlist: (symbol: string) => void;
   isWatched: (symbol: string) => boolean;
+  refreshInterval: Accessor<number>;
+  setRefreshInterval: (n: number) => void;
 }
 
 const StockContext = createContext<StockContextValue>();
@@ -80,6 +89,23 @@ export const StockProvider: ParentComponent = (props) => {
 
   const isWatched = (symbol: string) => watchlist().includes(symbol);
 
+  const [refreshInterval, setRefreshInterval] = createSignal<number>(0);
+
+  createEffect(() => {
+    const interval = refreshInterval();
+    let timer: ReturnType<typeof setInterval> | undefined;
+
+    if (interval !== 0) {
+      timer = setInterval(() => {
+        updateAllStocks();
+      }, interval);
+    }
+
+    onCleanup(() => {
+      if (timer) clearInterval(timer);
+    });
+  });
+
   const value: StockContextValue = {
     stockSignals,
     updateStock,
@@ -87,6 +113,8 @@ export const StockProvider: ParentComponent = (props) => {
     watchlist,
     toggleWatchlist,
     isWatched,
+    refreshInterval,
+    setRefreshInterval,
   };
 
   return (
