@@ -1,12 +1,12 @@
 import { Title } from "@solidjs/meta";
-import Dashboard from "../components/Dashboard";
 import MainLayout from "../layout/MainLayout";
 
-export default function Home() {
+export default function Stocks() {
   return (
     <MainLayout>
-      <Title>Dashboard</Title>
-      <Dashboard />
+      <Title>Stocks</Title>
+      <h1>Stocks</h1>
+      <p>Browse stock items and market data.</p>
     </MainLayout>
   );
 }

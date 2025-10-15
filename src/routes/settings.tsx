@@ -1,12 +1,12 @@
 import { Title } from "@solidjs/meta";
-import Dashboard from "../components/Dashboard";
 import MainLayout from "../layout/MainLayout";
 
-export default function Home() {
+export default function Settings() {
   return (
     <MainLayout>
-      <Title>Dashboard</Title>
-      <Dashboard />
+      <Title>Settings</Title>
+      <h1>Settings</h1>
+      <p>UI options and demo preferences.</p>
     </MainLayout>
   );
 }

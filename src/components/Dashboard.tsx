@@ -13,7 +13,7 @@ export default function Dashboard() {
   return (
     <div class="dashboard">
       <div class="dashboard-header">
-        <h1>Real-Time Market Visualization</h1>
+        <h1>Dashboard</h1>
         <button class="btn btn-primary" onClick={handleRefresh}>
           Refresh Prices
         </button>
