@@ -1,12 +1,27 @@
 import { Title } from "@solidjs/meta";
 import MainLayout from "../layout/MainLayout";
+import { useNavigate } from "@solidjs/router";
 
 export default function Settings() {
+  const navigate = useNavigate();
+
   return (
     <MainLayout>
       <Title>Settings</Title>
-      <h1>Settings</h1>
-      <p>UI options and demo preferences.</p>
+      <div class="notfound_main">
+        <h1>Settings</h1>
+        <p style={{ "max-width": "30rem" }}>
+          This demo intentionally keeps Settings minimal. Configuration is not
+          implemented because the project is a presentation/demo. Learn more
+          about the project on the About page.
+        </p>
+        <button
+          class="btn btn-primary btn-notfound"
+          onClick={() => navigate("/about")}
+        >
+          About
+        </button>
+      </div>
     </MainLayout>
   );
 }

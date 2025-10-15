@@ -38,10 +38,6 @@ export default function StockRow(props: StockRowProps) {
         <div class="stock-price-group-row">
           <span class="stock-price-row">${props.stock.price.toFixed(2)}</span>
           <div class="stock-price-change">
-            {/* <span class={`stock-change ${changeClass()}`}>
-              {props.stock.change >= 0 ? "▲" : "▼"}
-              <span>{Math.abs(props.stock.change).toFixed(2)}</span>
-            </span> */}
             <span class={`stock-change-percent ${changeClass()}`}>
               {props.stock.changePercent.toFixed(2)}%
             </span>

@@ -1,12 +1,10 @@
-import { Title } from "@solidjs/meta";
 import MainLayout from "../layout/MainLayout";
+import AboutPage from "../components/pages/AboutPage";
 
 export default function About() {
   return (
     <MainLayout>
-      <Title>About</Title>
-      <h1>About this project</h1>
-      <p>Real-Time Market Visualization — research-driven demo for SolidJS.</p>
+      <AboutPage />
     </MainLayout>
   );
 }
