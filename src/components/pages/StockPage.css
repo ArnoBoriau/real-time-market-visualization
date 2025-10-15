@@ -1,0 +1,133 @@
+/* StockPage styles — inspired by StockCard and Dashboard styles */
+
+.page {
+  padding: 2rem;
+  max-width: 87.5rem; /* 1400px */
+  margin: 0 auto;
+  color: #fff;
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.page-header h1 {
+  font-size: 1.6rem;
+  color: #667eea;
+  margin: 0;
+}
+
+.panel.stocks-panel {
+  background: rgba(255, 255, 255, 0.04);
+  padding: 1rem;
+  border-radius: 0.875rem; /* 14px */
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.stocks-list {
+  /* Single column vertical list: each bar occupies full available width */
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem; /* 10px */
+  width: 100%;
+}
+
+.stock-bar {
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem; /* 12px */
+  padding: 0.75rem 0.875rem; /* 12px 14px */
+  border-radius: 0.625rem; /* 10px */
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+
+.stock-bar:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+}
+
+.stock-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1;
+  justify-content: space-between;
+}
+
+.stock-symbol {
+  font-weight: 700;
+  color: #dbeafe; /* light */
+  min-width: 5rem; /* responsive min width */
+  text-transform: uppercase;
+  letter-spacing: 0.05rem;
+}
+
+.stock-price {
+  font-weight: 800;
+  color: #fff;
+  min-width: 6.5rem; /* responsive min width */
+}
+
+.stock-change,
+.stock-change-percent {
+  font-weight: 700;
+  min-width: 5.5rem;
+}
+
+.stock-change.positive,
+.stock-change-percent.positive {
+  color: #4ade80; /* green */
+}
+
+.stock-change.negative,
+.stock-change-percent.negative {
+  color: #f87171; /* red */
+}
+
+.stock-volume {
+  color: #94a3b8;
+  min-width: 6.5rem;
+  text-align: right;
+}
+
+/* Flash animation on update — reuse pattern from stock-card */
+.stock-bar.flash {
+  animation: stockFlash 0.35s ease;
+}
+
+@keyframes stockFlash {
+  0% {
+    background: rgba(102, 126, 234, 0.14);
+  }
+  100% {
+    background: rgba(255, 255, 255, 0.03);
+  }
+}
+
+/* Keep strict single-column layout; remove multi-column rules so bars stay stacked */
+
+/* Small screens: stack inner content vertically for tight widths */
+@media (max-width: 32.5rem) {
+  /* 520px */
+  .stock-bar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .stock-info {
+    gap: 0.5rem;
+  }
+
+  /* keep prices and key info visible */
+  .stock-price {
+    font-size: 1.1rem;
+  }
+}
