@@ -4,7 +4,7 @@ import "./RefreshControl.css";
 
 export default function RefreshControl() {
   const { updateAllStocks } = useStocks();
-  const [refreshInterval, setRefreshInterval] = createSignal<number>(60000); // Default: 1 minute
+  const [refreshInterval, setRefreshInterval] = createSignal<number>(0); // Default: off
 
   createEffect(() => {
     const interval = refreshInterval();
@@ -31,10 +31,16 @@ export default function RefreshControl() {
       <select
         id="refresh-rate"
         class="refresh-selector"
-        value={refreshInterval()}
+        value={String(refreshInterval())}
         onChange={handleIntervalChange}
       >
         <option value="0">Off</option>
+        <option value="50">50 ms</option>
+        <option value="100">100 ms</option>
+        <option value="500">500 ms</option>
+        <option value="1000">1 second</option>
+        <option value="5000">5 seconds</option>
+        <option value="15000">15 seconds</option>
         <option value="30000">30 seconds</option>
         <option value="60000">1 minute</option>
         <option value="120000">2 minutes</option>

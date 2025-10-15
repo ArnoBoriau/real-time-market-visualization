@@ -1,5 +1,6 @@
 import { createEffect, createSignal } from "solid-js";
 import type { StockData } from "../types/stock";
+import "./pages/StockPage.css";
 
 interface StockRowProps {
   stock: StockData;
@@ -24,9 +25,9 @@ export default function StockRow(props: StockRowProps) {
     <div class={`stock-bar ${flash() ? "flash" : ""}`}>
       <div class="stock-info">
         <div class="stock-identity">
-          <div>
+          <div class="stock-identity-main">
             <span class="stock-symbol">{props.stock.symbol}</span>
-            <span class={`stock-change-row ${changeClass()}`}>
+            <span class={`stock-change stock-change-row ${changeClass()}`}>
               {props.stock.change >= 0 ? "▲" : "▼"}
               <span>{Math.abs(props.stock.change).toFixed(2)}</span>
             </span>
