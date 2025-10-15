@@ -2,6 +2,7 @@ import { For } from "solid-js";
 import { useStocks } from "../../context/StockContext";
 import StockRow from "../StockRow";
 import "./StockPage.css";
+import RefreshControl from "../RefreshControl";
 
 export default function StockPage() {
   const { stockSignals, updateAllStocks } = useStocks();
@@ -14,9 +15,7 @@ export default function StockPage() {
     <div class="page">
       <div class="page-header">
         <h1>Stocks</h1>
-        <button class="btn btn-primary" onClick={handleRefresh}>
-          Refresh Prices
-        </button>
+        <RefreshControl />
       </div>
 
       <div>

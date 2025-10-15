@@ -1,22 +1,17 @@
 import { For } from "solid-js";
 import StockCard from "./StockCard";
+import RefreshControl from "./RefreshControl";
 import { useStocks } from "../context/StockContext";
 import "./Dashboard.css";
 
 export default function Dashboard() {
-  const { stockSignals, updateAllStocks } = useStocks();
-
-  const handleRefresh = () => {
-    updateAllStocks();
-  };
+  const { stockSignals } = useStocks();
 
   return (
     <div class="dashboard">
       <div class="dashboard-header">
         <h1>Dashboard</h1>
-        <button class="btn btn-primary" onClick={handleRefresh}>
-          Refresh Prices
-        </button>
+        <RefreshControl />
       </div>
 
       <div class="dashboard-grid">
