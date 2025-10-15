@@ -58,6 +58,26 @@
   height: 2rem;
 }
 
+.logo-nav {
+  text-decoration: none;
+  color: inherit;
+  background: none;
+  box-shadow: none;
+  border: none;
+  filter: none;
+}
+.logo-nav:visited,
+.logo-nav:active,
+.logo-nav:focus,
+.logo-nav:hover {
+  text-decoration: none;
+  color: inherit;
+  background: none;
+  box-shadow: none;
+  border: none;
+  filter: none;
+}
+
 .title {
   font-weight: 700;
   font-size: 1.25rem;

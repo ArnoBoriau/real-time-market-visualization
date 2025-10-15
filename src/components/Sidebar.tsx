@@ -1,5 +1,5 @@
 import { createSignal } from "solid-js";
-import { A } from "@solidjs/router";
+import { A, useLocation } from "@solidjs/router";
 import "./Sidebar.css";
 import {
   ChartCandlestick,
@@ -31,12 +31,14 @@ export default function Sidebar() {
   return (
     <aside class={`sidebar ${collapsed() ? "collapsed" : ""}`}>
       <div class="sidebar-header">
-        <div class="brand">
-          <div class="logo" aria-hidden>
-            <CircleDollarSign />
+        <A href="/" class="logo-nav">
+          <div class="brand">
+            <div class="logo" aria-hidden>
+              <CircleDollarSign />
+            </div>
+            <div class="title">RealTime</div>
           </div>
-          <div class="title">RealTime</div>
-        </div>
+        </A>
         <button
           class="collapse-btn"
           aria-label="Toggle sidebar"
@@ -47,25 +49,45 @@ export default function Sidebar() {
       </div>
 
       <nav class="sidebar-nav">
-        {navItems.map((item) => (
-          <A href={item.href} class="nav-item" activeClass="active">
-            <span class="icon" aria-hidden>
-              {item.icon}
-            </span>
-            <span class="label">{item.label}</span>
-          </A>
-        ))}
+        {navItems.map((item) => {
+          const loc = useLocation();
+          const path = loc.pathname;
+          const isActive =
+            item.href === "/" ? path === "/" : path.startsWith(item.href);
+          return (
+            <A
+              href={item.href}
+              class="nav-item"
+              classList={{ active: isActive }}
+            >
+              <span class="icon" aria-hidden>
+                {item.icon}
+              </span>
+              <span class="label">{item.label}</span>
+            </A>
+          );
+        })}
       </nav>
 
       <div class="sidebar-footer">
-        {secondary.map((item) => (
-          <A href={item.href} class="nav-item small" activeClass="active">
-            <span class="icon" aria-hidden>
-              {item.icon}
-            </span>
-            <span class="label">{item.label}</span>
-          </A>
-        ))}
+        {secondary.map((item) => {
+          const loc = useLocation();
+          const path = loc.pathname;
+          const isActive =
+            item.href === "/" ? path === "/" : path.startsWith(item.href);
+          return (
+            <A
+              href={item.href}
+              class="nav-item small"
+              classList={{ active: isActive }}
+            >
+              <span class="icon" aria-hidden>
+                {item.icon}
+              </span>
+              <span class="label">{item.label}</span>
+            </A>
+          );
+        })}
       </div>
     </aside>
   );
