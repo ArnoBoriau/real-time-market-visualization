@@ -5,6 +5,7 @@ import {
   Accessor,
   createEffect,
   onCleanup,
+  onMount,
 } from "solid-js";
 import { createSignal, Signal } from "solid-js";
 import { generateInitialStocks } from "../services/stockSetup";
@@ -77,6 +78,7 @@ export const StockProvider: ParentComponent = (props) => {
     });
   };
 
+  // watchlist config
   const [watchlist, setWatchlist] = createSignal<string[]>([]);
 
   const toggleWatchlist = (symbol: string) => {
@@ -89,6 +91,28 @@ export const StockProvider: ParentComponent = (props) => {
 
   const isWatched = (symbol: string) => watchlist().includes(symbol);
 
+  onMount(() => {
+    try {
+      const raw = localStorage.getItem("rtm_watchlist");
+      if (raw) {
+        const parsed = JSON.parse(raw) as string[];
+        if (Array.isArray(parsed)) setWatchlist(parsed);
+      }
+    } catch (e) {
+      return;
+    }
+  });
+
+  createEffect(() => {
+    if (typeof window === "undefined") return;
+    try {
+      localStorage.setItem("rtm_watchlist", JSON.stringify(watchlist()));
+    } catch (e) {
+      return;
+    }
+  });
+
+  // refresh rate config
   const [refreshInterval, setRefreshInterval] = createSignal<number>(0);
 
   createEffect(() => {
