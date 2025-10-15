@@ -9,6 +9,9 @@ interface StockContextValue {
   stockSignals: StockSignal[];
   updateStock: (index: number, updates: Partial<StockData>) => void;
   updateAllStocks: () => void;
+  watchlist: Accessor<string[]>;
+  toggleWatchlist: (symbol: string) => void;
+  isWatched: (symbol: string) => boolean;
 }
 
 const StockContext = createContext<StockContextValue>();
@@ -65,10 +68,25 @@ export const StockProvider: ParentComponent = (props) => {
     });
   };
 
+  const [watchlist, setWatchlist] = createSignal<string[]>([]);
+
+  const toggleWatchlist = (symbol: string) => {
+    setWatchlist((prev) =>
+      prev.includes(symbol)
+        ? prev.filter((s) => s !== symbol)
+        : [...prev, symbol]
+    );
+  };
+
+  const isWatched = (symbol: string) => watchlist().includes(symbol);
+
   const value: StockContextValue = {
     stockSignals,
     updateStock,
     updateAllStocks,
+    watchlist,
+    toggleWatchlist,
+    isWatched,
   };
 
   return (

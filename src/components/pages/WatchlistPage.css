@@ -25,6 +25,16 @@
   color: #fbbf24;
 }
 
+.star-btn.starred .star-icon {
+  stroke: #fbbf24;
+  fill: currentColor;
+}
+
+.star-btn.starred:hover .star-icon {
+  fill: none;
+  stroke: #fbbf24;
+}
+
 .stock-list-item {
   display: flex;
   align-items: center;
