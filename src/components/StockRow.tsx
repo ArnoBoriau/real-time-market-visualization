@@ -23,16 +23,30 @@ export default function StockRow(props: StockRowProps) {
   return (
     <div class={`stock-bar ${flash() ? "flash" : ""}`}>
       <div class="stock-info">
-        <span class="stock-symbol">{props.stock.symbol}</span>
-        <span class="stock-price">${props.stock.price.toFixed(2)}</span>
-        <span class={`stock-change ${changeClass()}`}>
-          {props.stock.change >= 0 ? "▲" : "▼"}
-          <span>{Math.abs(props.stock.change).toFixed(2)}</span>
-        </span>
-        <span class={`stock-change-percent ${changeClass()}`}>
-          {props.stock.changePercent.toFixed(2)}%
-        </span>
-        <span class="stock-volume">Vol: {props.stock.volume}</span>
+        <div class="stock-identity">
+          <div>
+            <span class="stock-symbol">{props.stock.symbol}</span>
+            <span class={`stock-change-row ${changeClass()}`}>
+              {props.stock.change >= 0 ? "▲" : "▼"}
+              <span>{Math.abs(props.stock.change).toFixed(2)}</span>
+            </span>
+          </div>
+          <span class="stock-volume-row">
+            Vol: {(props.stock.volume / 1000000).toFixed(2)}M
+          </span>
+        </div>
+        <div class="stock-price-group-row">
+          <span class="stock-price-row">${props.stock.price.toFixed(2)}</span>
+          <div class="stock-price-change">
+            {/* <span class={`stock-change ${changeClass()}`}>
+              {props.stock.change >= 0 ? "▲" : "▼"}
+              <span>{Math.abs(props.stock.change).toFixed(2)}</span>
+            </span> */}
+            <span class={`stock-change-percent ${changeClass()}`}>
+              {props.stock.changePercent.toFixed(2)}%
+            </span>
+          </div>
+        </div>
       </div>
     </div>
   );

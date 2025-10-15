@@ -1,7 +1,7 @@
 :root {
   --sidebar-width: max-content;
   --sidebar-collapsed: min-content;
-  --bg: #1a1a2e; /* matches dashboard background */
+  --bg: #1a1a2e;
   --panel: rgba(255, 255, 255, 0.04);
   --muted: #b8b8d1;
   --accent: #667eea;
@@ -156,7 +156,6 @@
   color: var(--muted);
 }
 
-/* Ensure SVG icons inherit text color and align correctly */
 .nav-item svg {
   display: inline-block;
   vertical-align: middle;

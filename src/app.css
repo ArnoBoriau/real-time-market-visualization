@@ -54,7 +54,6 @@ h1 {
 /* Page */
 .page {
   padding: 2rem;
-  max-width: 1800px;
   margin: 0 auto;
   background: #1a1a2e;
   min-height: 100vh;
