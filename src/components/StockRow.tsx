@@ -1,6 +1,6 @@
+import "./pages/StockPage.css";
 import { createEffect, createSignal } from "solid-js";
 import type { StockData } from "../types/stock";
-import "./pages/StockPage.css";
 
 interface StockRowProps {
   stock: StockData;

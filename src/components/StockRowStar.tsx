@@ -1,8 +1,9 @@
-import { createEffect, createSignal } from "solid-js";
-import { Star } from "lucide-solid";
-import type { StockData } from "../types/stock";
 import "./pages/StockPage.css";
 import "./pages/WatchlistPage.css";
+import { createEffect, createSignal } from "solid-js";
+
+import { Star } from "lucide-solid";
+import type { StockData } from "../types/stock";
 
 interface StockRowStarProps {
   stock: StockData;

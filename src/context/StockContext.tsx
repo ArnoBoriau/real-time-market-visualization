@@ -141,10 +141,13 @@ export const StockProvider: ParentComponent = (props) => {
     toggleWatchlist,
     isWatched,
     allStocks: createMemo(() => stockSignals.map(([s]) => s())),
-    watchedStocks: createMemo(() =>
-      watchlist()
-        .map((sym) => stockSignals.map(([s]) => s()).find((st) => st.symbol === sym))
-        .filter(Boolean) as StockData[]
+    watchedStocks: createMemo(
+      () =>
+        watchlist()
+          .map((sym) =>
+            stockSignals.map(([s]) => s()).find((st) => st.symbol === sym)
+          )
+          .filter(Boolean) as StockData[]
     ),
     refreshInterval,
     setRefreshInterval,

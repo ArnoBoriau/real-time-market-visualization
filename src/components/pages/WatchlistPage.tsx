@@ -1,9 +1,11 @@
-import { For, createMemo } from "solid-js";
+import "./StockPage.css";
+import { For } from "solid-js";
+
 import { useStocks } from "../../context/StockContext";
+
 import StockRowStar from "../StockRowStar";
 import RefreshControl from "../RefreshControl";
 import WatchlistPanel from "../WatchlistPanel";
-import "./StockPage.css";
 
 export default function WatchlistPage() {
   const { allStocks, watchlist, toggleWatchlist } = useStocks();

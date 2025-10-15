@@ -1,5 +1,6 @@
 import { For } from "solid-js";
 import StockRowStar from "./StockRowStar";
+
 import { useStocks } from "../context/StockContext";
 
 export default function WatchlistPanel() {

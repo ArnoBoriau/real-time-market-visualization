@@ -1,6 +1,7 @@
 import { For, createMemo } from "solid-js";
-import { useStocks } from "../context/StockContext";
 import StockCard from "./StockCard";
+
+import { useStocks } from "../context/StockContext";
 
 export default function TrendingPanel() {
   const { allStocks } = useStocks();

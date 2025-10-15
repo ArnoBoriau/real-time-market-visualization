@@ -1,5 +1,4 @@
 import "./StockPage.css";
-import { useStocks } from "../../context/StockContext";
 
 import RefreshControl from "../RefreshControl";
 import StocklistPanel from "../StocklistPanel";

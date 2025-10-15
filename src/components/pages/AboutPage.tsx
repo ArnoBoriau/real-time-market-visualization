@@ -1,6 +1,6 @@
+import "./AboutPage.css";
 import { Title } from "@solidjs/meta";
 import { ParentComponent } from "solid-js";
-import "./AboutPage.css";
 
 const AboutPage: ParentComponent = () => {
   return (

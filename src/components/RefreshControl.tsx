@@ -1,5 +1,5 @@
-import { useStocks } from "../context/StockContext";
 import "./RefreshControl.css";
+import { useStocks } from "../context/StockContext";
 
 export default function RefreshControl() {
   const { refreshInterval, setRefreshInterval } = useStocks();

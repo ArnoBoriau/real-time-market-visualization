@@ -1,6 +1,6 @@
 import { Title } from "@solidjs/meta";
-import MainLayout from "../layout/MainLayout";
 import { useNavigate } from "@solidjs/router";
+import MainLayout from "../layout/MainLayout";
 
 export default function Settings() {
   const navigate = useNavigate();

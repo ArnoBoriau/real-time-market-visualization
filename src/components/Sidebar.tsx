@@ -1,6 +1,7 @@
+import "./Sidebar.css";
 import { createSignal } from "solid-js";
 import { A, useLocation } from "@solidjs/router";
-import "./Sidebar.css";
+
 import {
   ChartCandlestick,
   ChevronsLeft,
