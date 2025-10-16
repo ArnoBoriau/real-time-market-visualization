@@ -8,7 +8,7 @@ interface SparklineProps {
 
 export default function Sparkline(props: SparklineProps) {
   const [width, setWidth] = createSignal(100);
-  let containerRef: HTMLDivElement | undefined;
+  let containerRef: HTMLDivElement | null = null;
 
   const sparkView = createMemo(() => {
     const data = props.data;
@@ -16,23 +16,26 @@ export default function Sparkline(props: SparklineProps) {
       return { w: 100, h: 32, points: "", lastX: 0, lastY: 0 };
     }
 
-    const w = width();
+    const w = Math.max(2, width());
     const h = props.height || 32;
     const pad = 4;
     const min = Math.min(...data);
     const max = Math.max(...data);
     const denom = max - min || 1;
 
+    const n = data.length;
+    const steps = Math.max(1, n - 1);
+
     const points = data
       .map((v, i) => {
-        const x = pad + ((w - pad * 2) * i) / (data.length - 1);
+        const x = pad + ((w - pad * 2) * i) / steps;
         const y = pad + (h - pad * 2) * (1 - (v - min) / denom);
         return `${x},${y}`;
       })
       .join(" ");
 
     const last = data[data.length - 1];
-    const lastX = pad + ((w - pad * 2) * (data.length - 1)) / (data.length - 1);
+    const lastX = pad + ((w - pad * 2) * (n - 1)) / steps;
     const lastY = pad + (h - pad * 2) * (1 - (last - min) / denom);
 
     return { w, h, points, lastX, lastY };
@@ -48,9 +51,7 @@ export default function Sparkline(props: SparklineProps) {
     measure();
     window.addEventListener("resize", measure);
     const resizeObserver = new ResizeObserver(measure);
-    if (containerRef) {
-      resizeObserver.observe(containerRef);
-    }
+    if (containerRef) resizeObserver.observe(containerRef);
 
     onCleanup(() => {
       window.removeEventListener("resize", measure);
@@ -60,7 +61,7 @@ export default function Sparkline(props: SparklineProps) {
 
   return (
     <div
-      ref={containerRef}
+      ref={(el) => (containerRef = el)}
       style={{ width: "100%", height: `${props.height || 32}px` }}
     >
       <svg
