@@ -39,6 +39,7 @@ export const generateInitialStocks = (): StockData[] => {
       changePercent: 0,
       volume: Math.floor(Math.random() * 10000000) + 1000000,
       lastUpdate: Date.now(),
+      priceHistory: [price],
     };
   });
 };

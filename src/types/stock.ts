@@ -6,4 +6,5 @@ export interface StockData {
   changePercent: number;
   volume: number;
   lastUpdate: number;
+  priceHistory: number[];
 }

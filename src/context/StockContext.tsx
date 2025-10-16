@@ -70,6 +70,13 @@ export const StockProvider: ParentComponent = (props) => {
       const change = newPrice - current.price;
       const changePercent = (change / current.price) * 100;
 
+      // Keep a rolling window of the last 50 prices for the sparkline
+      const maxHistory = 50;
+      const newHistory = [...current.priceHistory, newPrice];
+      if (newHistory.length > maxHistory) {
+        newHistory.shift();
+      }
+
       setStock({
         ...current,
         price: newPrice,
@@ -77,6 +84,7 @@ export const StockProvider: ParentComponent = (props) => {
         changePercent,
         volume: current.volume + Math.floor(Math.random() * 10000),
         lastUpdate: Date.now(),
+        priceHistory: newHistory,
       });
     });
   };
