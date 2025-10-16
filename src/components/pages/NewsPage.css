@@ -1,0 +1,70 @@
+/* News feed styles */
+.news-feed {
+  margin-top: 1rem;
+}
+
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.news-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 1rem;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.news-top {
+  display: flex;
+  flex-direction: column;
+}
+
+.news-card-head {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.news-headline {
+  font-size: 1.05rem;
+  margin: 0;
+  color: #fff;
+}
+
+.news-meta {
+  font-size: 0.85rem;
+  color: #b8b8d1;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.news-summary {
+  color: #cbd5e1;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.news-tickers {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.ticker-pill {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  font-weight: 700;
+  color: #fff;
+  font-size: 0.8rem;
+}
