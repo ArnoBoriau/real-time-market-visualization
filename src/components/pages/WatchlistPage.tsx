@@ -3,7 +3,7 @@ import { For } from "solid-js";
 
 import { useStocks } from "../../context/StockContext";
 
-import StockRowStar from "../StockRowStar";
+import StockRow from "../StockRow";
 import RefreshControl from "../RefreshControl";
 import WatchlistPanel from "../WatchlistPanel";
 
@@ -27,7 +27,7 @@ export default function WatchlistPage() {
             >
               {(s) => (
                 <div class="stock-list-item">
-                  <StockRowStar
+                  <StockRow
                     stock={s}
                     starred={false}
                     onToggleStar={toggleWatchlist}

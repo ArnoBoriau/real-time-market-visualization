@@ -1,5 +1,5 @@
 import { For } from "solid-js";
-import StockRowStar from "./StockRowStar";
+import StockRow from "./StockRow";
 
 import { useStocks } from "../context/StockContext";
 
@@ -18,7 +18,7 @@ export default function WatchlistPanel() {
         ) : (
           <For each={watchedStocks()}>
             {(st) => (
-              <StockRowStar
+              <StockRow
                 stock={st!}
                 starred={true}
                 onToggleStar={toggleWatchlist}
