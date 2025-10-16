@@ -133,11 +133,13 @@
   overflow: hidden;
   display: flex;
   justify-content: space-between;
+  gap: 2rem;
 }
 
 .stock-spark {
   display: flex;
   align-items: center;
+  width: 100%;
 }
 
 .stock-card.flash {

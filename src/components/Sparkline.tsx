@@ -16,7 +16,7 @@ export default function Sparkline(props: SparklineProps) {
       return { w: 100, h: 32, points: "", lastX: 0, lastY: 0 };
     }
 
-    const w = width() || 100;
+    const w = width();
     const h = props.height || 32;
     const pad = 4;
     const min = Math.min(...data);
@@ -39,10 +39,23 @@ export default function Sparkline(props: SparklineProps) {
   });
 
   onMount(() => {
-    const measure = () => setWidth(containerRef?.clientWidth || 100);
+    const measure = () => {
+      if (containerRef) {
+        setWidth(containerRef.clientWidth);
+      }
+    };
+
     measure();
     window.addEventListener("resize", measure);
-    onCleanup(() => window.removeEventListener("resize", measure));
+    const resizeObserver = new ResizeObserver(measure);
+    if (containerRef) {
+      resizeObserver.observe(containerRef);
+    }
+
+    onCleanup(() => {
+      window.removeEventListener("resize", measure);
+      resizeObserver.disconnect();
+    });
   });
 
   return (
